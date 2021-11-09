@@ -678,7 +678,7 @@ mod safepkt_b7de9e5f7a {
             let owners = ink_prelude::vec![accounts.alice, accounts.bob, accounts.eve];
             let contract = build_contract();
 
-            assert_eq!(contract.owners.len(), 3);
+            assert_eq!(contract.owners.len(), 2);
             assert_eq!(*contract.requirement.get(), 2);
             assert!(contract.owners.iter().eq(owners.iter()));
             assert!(contract.is_owner.get(&accounts.alice).is_some());
@@ -735,7 +735,7 @@ mod safepkt_b7de9e5f7a {
 
         #[test]
         #[should_panic]
-        fn add_owner_permission_denied() {
+        fn add_owner_permission_denied_fails() {
             let accounts = default_accounts();
             let mut contract = build_contract();
             set_from_owner();
@@ -765,7 +765,7 @@ mod safepkt_b7de9e5f7a {
 
         #[test]
         #[should_panic]
-        fn remove_owner_permission_denied() {
+        fn remove_owner_permission_denied_fails() {
             let accounts = default_accounts();
             let mut contract = build_contract();
             set_from_owner();
@@ -805,7 +805,7 @@ mod safepkt_b7de9e5f7a {
 
         #[test]
         #[should_panic]
-        fn replace_owner_permission_denied() {
+        fn replace_owner_permission_denied_fails() {
             let accounts = default_accounts();
             let mut contract = build_contract();
             set_from_owner();
@@ -824,7 +824,7 @@ mod safepkt_b7de9e5f7a {
 
         #[test]
         #[should_panic]
-        fn change_requirement_too_high() {
+        fn change_requirement_too_high_fails() {
             let mut contract = build_contract();
             set_from_wallet();
             contract.change_requirement(4);
@@ -879,7 +879,7 @@ mod safepkt_b7de9e5f7a {
 
         #[test]
         #[should_panic]
-        fn cancel_transaction_no_permission() {
+        fn cancel_transaction_no_permission_fails() {
             let mut contract = submit_transaction();
             contract.cancel_transaction(0);
         }
