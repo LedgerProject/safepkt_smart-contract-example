@@ -5,14 +5,14 @@ authors = ["Parity Technologies <admin@parity.io>", "CJDNS SASU"]
 edition = "2018"
 
 [dependencies]
-verification-annotations = { path="/home/rust-verification-tools/verification-annotations" }
-ink_primitives = { version = "2.1.0", path = "../../primitives", default-features = false }
-ink_abi = { version = "2.1.0", path = "../../abi", default-features = false, features = ["derive"], optional = true }
-ink_core = { version = "2.1.0", path = "../../core", default-features = false }
-ink_lang = { version = "2.1.0", path = "../../lang", default-features = false }
-ink_prelude = { version = "2.1.0", path = "../../prelude", default-features = false }
+# verification-annotations = { git="https://github.com/thierrymarianne/contrib-rust-verification-tools.git", rev="e2f3c5c65a77" }
+ink_primitives = { version = "2.1.0", git="https://github.com/paritytech/ink.git", rev="v2.1.0", default-features = false }
+ink_abi = { version = "2.1.0", git="https://github.com/paritytech/ink.git", rev="v2.1.0", default-features = false, features = ["derive"], optional = true }
+ink_core = { version = "2.1.0", git="https://github.com/paritytech/ink.git", rev="v2.1.0", default-features = false }
+ink_lang = { version = "2.1.0", git="https://github.com/paritytech/ink.git", rev="v2.1.0", default-features = false }
+ink_prelude = { version = "2.1.0", git="https://github.com/paritytech/ink.git", rev="v2.1.0", default-features = false }
 
-scale = { package = "parity-scale-codec", version = "1.2", default-features = false, features = ["derive"] }
+scale = { package="parity-scale-codec", git="https://github.com/paritytech/parity-scale-codec", rev="parity-scale-codec-1.3.7", version = "1.3.7", default-features = false, features = ["derive"] }
 
 [dependencies.type-metadata]
 git = "https://github.com/type-metadata/type-metadata.git"
@@ -21,10 +21,10 @@ default-features = false
 features = ["derive"]
 optional = true
 
-[patch.crates-io]
-arrayvec = { version = "0.4.12", path = "/safepkt-arrayvec" }
-rand = { version = "0.7.3", path = "/safepkt-rand" }
-smallvec = { version = "1.7.0", path = "/safepkt-rust-smallvec" }
+# [patch.crates-io]
+# arrayvec = { version = "0.4.12", path = "/safepkt-arrayvec" }
+# rand = { version = "0.7.3", path = "/safepkt-rand" }
+# smallvec = { version = "1.7.0", path = "/safepkt-rust-smallvec" }
 
 [lib]
 name = "safepkt_b7de9e5f7a"
@@ -37,7 +37,7 @@ crate-type = [
 ]
 
 [features]
-verifier-klee = ["verification-annotations/verifier-klee"]
+# verifier-klee = ["verification-annotations/verifier-klee"]
 default = ["test-env"]
 std = [
     "ink_abi/std",
@@ -66,16 +66,8 @@ lto = true
 opt-level = "z"
 overflow-checks = true
 
-[workspace]
-members = [
-	".ink/abi_gen"
-]
-exclude = [
-	".ink"
-]
-
 [target.'cfg(not(verify))'.dependencies]
 proptest = { version = "0.10" }
 
 [target.'cfg(verify)'.dependencies]
-propverify = { path="/home/rust-verification-tools/propverify" }
+propverify = { git="https://github.com/thierrymarianne/contrib-rust-verification-tools.git", rev="e2f3c5c65a77" }
