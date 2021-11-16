@@ -1,4 +1,7 @@
-# SafePKT Smart Contract Verification Example
+# SafePKT Buggy Smart Contract
+
+This is a an example smart contract with a BUG, do not use it in production!
+It is here for demonstrating how to do SafePKT symbolic execution based static analysis.
 
 This project is implemented in the context of the European [NGI LEDGER program](https://ledger-3rd-open-call.fundingbox.com/).
 

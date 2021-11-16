@@ -3,6 +3,16 @@
 version = 3
 
 [[package]]
+name = "abi-gen"
+version = "0.1.0"
+dependencies = [
+ "ink_lang 2.1.0",
+ "safepkt_b7de9e5f7a",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "0.7.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -31,27 +41,6 @@ name = "autocfg"
 version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cdb031dd78e28731d87d56cc8ffef4a8f36ca26c38fe2de700543e627f8a464a"
-
-[[package]]
-name = "bit-set"
-version = "0.5.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6e11e16035ea35e4e5997b393eacbf6f63983188f7a2ad25bfb13465f5ad59de"
-dependencies = [
- "bit-vec",
-]
-
-[[package]]
-name = "bit-vec"
-version = "0.6.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "349f9b6a179ed607305526ca489b34ad0a41aed5f7980fa90eb03160b69598fb"
-
-[[package]]
-name = "bitflags"
-version = "1.3.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
 
 [[package]]
 name = "bitvec"
@@ -169,12 +158,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e88a8acf291dafb59c2d96e8f59828f3838bb1a70398823ade51a84de6a6deed"
 
 [[package]]
-name = "fnv"
-version = "1.0.7"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3f9eec918d3f24069decb9af1554cad7c880e2da24a9afd88aca000531ab82c1"
-
-[[package]]
 name = "generic-array"
 version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -191,18 +174,7 @@ checksum = "8fc3cb4d91f53b50155bdcfd23f6a4c39ae1969c2ae85982b135750cccaf5fce"
 dependencies = [
  "cfg-if 1.0.0",
  "libc",
- "wasi 0.9.0+wasi-snapshot-preview1",
-]
-
-[[package]]
-name = "getrandom"
-version = "0.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7fcd999463524c52659517fe2cea98493cfe485d10565e7b0fb07dbba7ad2753"
-dependencies = [
- "cfg-if 1.0.0",
- "libc",
- "wasi 0.10.2+wasi-snapshot-preview1",
+ "wasi",
 ]
 
 [[package]]
@@ -217,12 +189,24 @@ dependencies = [
 [[package]]
 name = "ink_abi"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
  "derive_more",
- "ink_abi_derive",
- "ink_prelude",
- "ink_primitives",
+ "ink_abi_derive 2.1.0",
+ "ink_prelude 2.1.0",
+ "ink_primitives 2.1.0",
+ "serde",
+ "type-metadata",
+]
+
+[[package]]
+name = "ink_abi"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "derive_more",
+ "ink_abi_derive 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_prelude 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
  "serde",
  "type-metadata",
 ]
@@ -230,7 +214,16 @@ dependencies = [
 [[package]]
 name = "ink_abi_derive"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "ink_abi_derive"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -240,7 +233,14 @@ dependencies = [
 [[package]]
 name = "ink_alloc"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
+dependencies = [
+ "wee_alloc",
+]
+
+[[package]]
+name = "ink_alloc"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
 dependencies = [
  "wee_alloc",
 ]
@@ -248,21 +248,44 @@ dependencies = [
 [[package]]
 name = "ink_core"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
  "blake2-rfc",
  "byteorder",
  "cfg-if 0.1.10",
  "derive_more",
- "ink_abi",
- "ink_alloc",
- "ink_core_derive",
- "ink_prelude",
- "ink_primitives",
+ "ink_abi 2.1.0",
+ "ink_alloc 2.1.0",
+ "ink_core_derive 2.1.0",
+ "ink_prelude 2.1.0",
+ "ink_primitives 2.1.0",
  "num-traits",
- "parity-scale-codec 1.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "parity-scale-codec",
  "paste",
- "rand 0.7.3",
+ "rand",
+ "sha2",
+ "smallvec",
+ "tiny-keccak",
+ "type-metadata",
+]
+
+[[package]]
+name = "ink_core"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "blake2-rfc",
+ "byteorder",
+ "cfg-if 0.1.10",
+ "derive_more",
+ "ink_abi 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_alloc 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_core_derive 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_prelude 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "num-traits",
+ "parity-scale-codec",
+ "paste",
+ "rand",
  "sha2",
  "smallvec",
  "tiny-keccak",
@@ -272,9 +295,20 @@ dependencies = [
 [[package]]
 name = "ink_core_derive"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
- "ink_primitives",
+ "ink_primitives 2.1.0",
+ "proc-macro2",
+ "quote",
+ "syn",
+ "synstructure",
+]
+
+[[package]]
+name = "ink_core_derive"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
  "proc-macro2",
  "quote",
  "syn",
@@ -284,28 +318,60 @@ dependencies = [
 [[package]]
 name = "ink_lang"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
  "derive_more",
- "ink_abi",
- "ink_core",
- "ink_lang_macro",
- "ink_prelude",
- "ink_primitives",
- "parity-scale-codec 1.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ink_abi 2.1.0",
+ "ink_core 2.1.0",
+ "ink_lang_macro 2.1.0",
+ "ink_prelude 2.1.0",
+ "ink_primitives 2.1.0",
+ "parity-scale-codec",
+]
+
+[[package]]
+name = "ink_lang"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "derive_more",
+ "ink_abi 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_core 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_lang_macro 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_prelude 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "parity-scale-codec",
 ]
 
 [[package]]
 name = "ink_lang_macro"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
  "derive_more",
  "either",
  "heck",
- "ink_primitives",
+ "ink_primitives 2.1.0",
  "itertools",
- "parity-scale-codec 1.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "parity-scale-codec",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "serde",
+ "serde_json",
+ "syn",
+ "type-metadata",
+]
+
+[[package]]
+name = "ink_lang_macro"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "derive_more",
+ "either",
+ "heck",
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "itertools",
+ "parity-scale-codec",
  "proc-macro2",
  "quote",
  "regex",
@@ -318,7 +384,14 @@ dependencies = [
 [[package]]
 name = "ink_prelude"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
+dependencies = [
+ "cfg-if 0.1.10",
+]
+
+[[package]]
+name = "ink_prelude"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
 dependencies = [
  "cfg-if 0.1.10",
 ]
@@ -326,10 +399,20 @@ dependencies = [
 [[package]]
 name = "ink_primitives"
 version = "2.1.0"
-source = "git+https://github.com/paritytech/ink.git?rev=v2.1.0#cca31543d338dcd69c7ac922988b91ebf170edb2"
 dependencies = [
- "ink_prelude",
- "parity-scale-codec 1.3.7 (registry+https://github.com/rust-lang/crates.io-index)",
+ "ink_prelude 2.1.0",
+ "parity-scale-codec",
+ "tiny-keccak",
+ "type-metadata",
+]
+
+[[package]]
+name = "ink_primitives"
+version = "2.1.0"
+source = "git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d#2137ed9d87aa420da8895f241c2f8bef6385849d"
+dependencies = [
+ "ink_prelude 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "parity-scale-codec",
  "tiny-keccak",
  "type-metadata",
 ]
@@ -348,12 +431,6 @@ name = "itoa"
 version = "0.4.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b71991ff56294aa922b450139ee08b3bfc70982c6b2c7562771375cf73542dd4"
-
-[[package]]
-name = "lazy_static"
-version = "1.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
 name = "libc"
@@ -403,19 +480,7 @@ dependencies = [
  "arrayvec 0.5.2",
  "bitvec",
  "byte-slice-cast",
- "parity-scale-codec-derive 1.2.3 (registry+https://github.com/rust-lang/crates.io-index)",
- "serde",
-]
-
-[[package]]
-name = "parity-scale-codec"
-version = "1.3.7"
-source = "git+https://github.com/paritytech/parity-scale-codec?rev=parity-scale-codec-1.3.7#489642e7c8871c549b2ac4e3f5cd4312a65897fb"
-dependencies = [
- "arrayvec 0.5.2",
- "bitvec",
- "byte-slice-cast",
- "parity-scale-codec-derive 1.2.3 (git+https://github.com/paritytech/parity-scale-codec?rev=parity-scale-codec-1.3.7)",
+ "parity-scale-codec-derive",
  "serde",
 ]
 
@@ -424,17 +489,6 @@ name = "parity-scale-codec-derive"
 version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c41512944b1faff334a5f1b9447611bf4ef40638ccb6328173dacefb338e878c"
-dependencies = [
- "proc-macro-crate",
- "proc-macro2",
- "quote",
- "syn",
-]
-
-[[package]]
-name = "parity-scale-codec-derive"
-version = "1.2.3"
-source = "git+https://github.com/paritytech/parity-scale-codec?rev=parity-scale-codec-1.3.7#489642e7c8871c549b2ac4e3f5cd4312a65897fb"
 dependencies = [
  "proc-macro-crate",
  "proc-macro2",
@@ -492,40 +546,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "proptest"
-version = "0.10.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "12e6c80c1139113c28ee4670dc50cc42915228b51f56a9e407f0ec60f966646f"
-dependencies = [
- "bit-set",
- "bitflags",
- "byteorder",
- "lazy_static",
- "num-traits",
- "quick-error",
- "rand 0.7.3",
- "rand_chacha 0.2.2",
- "rand_xorshift",
- "regex-syntax",
- "rusty-fork",
- "tempfile",
-]
-
-[[package]]
-name = "propverify"
-version = "0.1.0"
-source = "git+https://github.com/thierrymarianne/contrib-rust-verification-tools.git?rev=e2f3c5c65a77#e2f3c5c65a7715b18eecb1fe6af64f71a30c0bb0"
-dependencies = [
- "verification-annotations",
-]
-
-[[package]]
-name = "quick-error"
-version = "1.2.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
-
-[[package]]
 name = "quote"
 version = "1.0.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -546,23 +566,11 @@ version = "0.7.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6a6b1679d49b24bbfe0c803429aa1874472f50d9b363131f0e89fc356b544d03"
 dependencies = [
- "getrandom 0.1.16",
+ "getrandom",
  "libc",
- "rand_chacha 0.2.2",
- "rand_core 0.5.1",
- "rand_hc 0.2.0",
-]
-
-[[package]]
-name = "rand"
-version = "0.8.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2e7573632e6454cf6b99d7aac4ccca54be06da05aca2ef7423d22d27d4d4bcd8"
-dependencies = [
- "libc",
- "rand_chacha 0.3.1",
- "rand_core 0.6.3",
- "rand_hc 0.3.1",
+ "rand_chacha",
+ "rand_core",
+ "rand_hc",
 ]
 
 [[package]]
@@ -572,17 +580,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f4c8ed856279c9737206bf725bf36935d8666ead7aa69b52be55af369d193402"
 dependencies = [
  "ppv-lite86",
- "rand_core 0.5.1",
-]
-
-[[package]]
-name = "rand_chacha"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e6c10a63a0fa32252be49d21e7709d4d4baf8d231c2dbce1eaa8141b9b127d88"
-dependencies = [
- "ppv-lite86",
- "rand_core 0.6.3",
+ "rand_core",
 ]
 
 [[package]]
@@ -591,16 +589,7 @@ version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "90bde5296fc891b0cef12a6d03ddccc162ce7b2aff54160af9338f8d40df6d19"
 dependencies = [
- "getrandom 0.1.16",
-]
-
-[[package]]
-name = "rand_core"
-version = "0.6.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d34f1408f55294453790c48b2f1ebbb1c5b4b7563eb1f418bcfcfdbb06ebb4e7"
-dependencies = [
- "getrandom 0.2.3",
+ "getrandom",
 ]
 
 [[package]]
@@ -609,34 +598,7 @@ version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ca3129af7b92a17112d59ad498c6f81eaf463253766b90396d39ea7a39d6613c"
 dependencies = [
- "rand_core 0.5.1",
-]
-
-[[package]]
-name = "rand_hc"
-version = "0.3.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d51e9f596de227fda2ea6c84607f5558e196eeaf43c986b724ba4fb8fdf497e7"
-dependencies = [
- "rand_core 0.6.3",
-]
-
-[[package]]
-name = "rand_xorshift"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "77d416b86801d23dde1aa643023b775c3a462efc0ed96443add11546cdf1dca8"
-dependencies = [
- "rand_core 0.5.1",
-]
-
-[[package]]
-name = "redox_syscall"
-version = "0.2.10"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8383f39639269cde97d255a32bdb68c047337295414940c68bdd30c2e13203ff"
-dependencies = [
- "bitflags",
+ "rand_core",
 ]
 
 [[package]]
@@ -657,45 +619,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
 
 [[package]]
-name = "remove_dir_all"
-version = "0.5.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3acd125665422973a33ac9d3dd2df85edad0f4ae9b00dafb1a05e43a9f5ef8e7"
-dependencies = [
- "winapi",
-]
-
-[[package]]
-name = "rusty-fork"
-version = "0.3.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cb3dcc6e454c328bb824492db107ab7c0ae8fcffe4ad210136ef014458c1bc4f"
-dependencies = [
- "fnv",
- "quick-error",
- "tempfile",
- "wait-timeout",
-]
-
-[[package]]
 name = "ryu"
 version = "1.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "71d301d4193d031abdd79ff7e3dd721168a9572ef3fe51a1517aba235bd8f86e"
 
 [[package]]
+name = "safepkt_assert"
+version = "0.1.0"
+source = "git+https://github.com/LedgerProject/safepkt_assert?rev=ddd0f25f291244508b5e32a16c811e1bcda1920b#ddd0f25f291244508b5e32a16c811e1bcda1920b"
+dependencies = [
+ "verification-annotations",
+]
+
+[[package]]
 name = "safepkt_b7de9e5f7a"
 version = "0.1.0"
 dependencies = [
- "ink_abi",
- "ink_core",
- "ink_lang",
- "ink_prelude",
- "ink_primitives",
- "parity-scale-codec 1.3.7 (git+https://github.com/paritytech/parity-scale-codec?rev=parity-scale-codec-1.3.7)",
- "proptest",
- "propverify",
+ "ink_abi 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_core 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_lang 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_prelude 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "ink_primitives 2.1.0 (git+https://github.com/LedgerProject/safepkt-ink?rev=2137ed9d87aa420da8895f241c2f8bef6385849d)",
+ "parity-scale-codec",
+ "safepkt_assert",
  "type-metadata",
+ "verification-annotations",
 ]
 
 [[package]]
@@ -771,20 +720,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "tempfile"
-version = "3.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dac1c663cfc93810f88aed9b8941d48cabf856a1b111c29a40439018d870eb22"
-dependencies = [
- "cfg-if 1.0.0",
- "libc",
- "rand 0.8.4",
- "redox_syscall",
- "remove_dir_all",
- "winapi",
-]
-
-[[package]]
 name = "tiny-keccak"
 version = "2.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -846,25 +781,10 @@ version = "0.1.0"
 source = "git+https://github.com/thierrymarianne/contrib-rust-verification-tools.git?rev=e2f3c5c65a77#e2f3c5c65a7715b18eecb1fe6af64f71a30c0bb0"
 
 [[package]]
-name = "wait-timeout"
-version = "0.2.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9f200f5b12eb75f8c1ed65abd4b2db8a6e1b138a20de009dacee265a2498f3f6"
-dependencies = [
- "libc",
-]
-
-[[package]]
 name = "wasi"
 version = "0.9.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cccddf32554fecc6acb585f82a32a72e28b48f8c4c1883ddfeeeaa96f7d8e519"
-
-[[package]]
-name = "wasi"
-version = "0.10.2+wasi-snapshot-preview1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd6fbd9a79829dd1ad0cc20627bf1ed606756a7f77edff7b66b7064f9cb327c6"
 
 [[package]]
 name = "wee_alloc"
